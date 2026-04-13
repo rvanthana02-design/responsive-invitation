@@ -5,207 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jianna Turns One</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
+  font-family:'Fredoka',sans-serif;
+  overflow:hidden;
+  background:linear-gradient(135deg,#fff0f5,#e0f7fa,#fff9c4);
+}
+
+/* Swipe pages */
+.container{
+  display:flex;
+  width:200%;
+  transition:0.5s;
+}
+.page{
+  width:100%;
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
-
-  background: linear-gradient(135deg,#fff0f5,#ffe4ec,#ffd6e8);
-  background-size:300% 300%;
-  animation:bgMove 10s infinite;
+  flex-direction:column;
 }
 
-@keyframes bgMove{
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
+/* Intro */
+.intro{
+  font-size:30px;
+  text-align:center;
+  animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
 /* Card */
 .card{
-  position:relative;
-  z-index:1;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(12px);
-  border-radius:30px;
-  padding:25px;
-  width:90%;
-  max-width:420px;
+  background:white;
+  border-radius:25px;
+  padding:20px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* Cross */
-.cross{
-  font-size:30px;
-  color:gold;
-  animation:float 3s infinite,glow 2s infinite alternate;
-}
-
-/* Animations */
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
-@keyframes glow{
-  from{text-shadow:0 0 5px gold}
-  to{text-shadow:0 0 20px gold}
-}
-
-/* Text */
-.title{font-family:'Playfair Display';color:#d4af37;}
-.name{font-size:28px;color:#ff4f81;font-weight:bold;}
-.text{font-size:14px;color:#444;margin:8px 0;}
-
-/* Buttons */
-.map-btn,.cut-btn{
-  margin-top:10px;
-  padding:10px 15px;
-  border-radius:20px;
-  border:none;
-  background:linear-gradient(45deg,#d4af37,#ffd700);
+/* Cute elements */
+.name{font-size:28px;color:#ff69b4;}
+.text{font-size:14px;margin:8px;}
+.btn{
+  background:#ff80ab;
   color:white;
-  cursor:pointer;
-}
-
-/* Countdown */
-.countdown{color:#d4af37;font-weight:bold;}
-
-/* Cake */
-.cake{font-size:50px;}
-.cake.cut{transform:rotate(-10deg) scale(0.9);}
-
-/* Bible */
-.bible{font-size:13px;font-style:italic;}
-.bible span{color:#d4af37;font-weight:bold;}
-
-/* Pin */
-.location-pin{font-size:30px;animation:bounce 1.5s infinite;}
-@keyframes bounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
+  padding:10px;
+  border:none;
+  border-radius:20px;
 }
 
 /* Hearts */
 .hearts span{
   position:fixed;
   bottom:0;
-  font-size:20px;
-  animation:floatHearts 8s linear infinite;
+  animation:float 8s infinite;
 }
-@keyframes floatHearts{
-  0%{transform:translateY(0);opacity:0}
-  50%{opacity:1}
-  100%{transform:translateY(-100vh);opacity:0}
+@keyframes float{
+  100%{transform:translateY(-100vh)}
 }
 
 /* Balloons */
 .balloons span{
   position:fixed;
   bottom:-50px;
-  font-size:30px;
-  animation:floatBalloon 10s linear infinite;
+  animation:balloon 10s infinite;
 }
-@keyframes floatBalloon{
-  0%{transform:translateY(0);opacity:0}
-  50%{opacity:1}
-  100%{transform:translateY(-120vh);opacity:0}
+@keyframes balloon{
+  100%{transform:translateY(-120vh)}
 }
 
 /* Teddy */
 .teddy{
   font-size:40px;
-  animation:teddyMove 3s infinite;
+  animation:shake 2s infinite;
 }
-@keyframes teddyMove{
-  0%,100%{transform:rotate(0)}
+@keyframes shake{
   50%{transform:rotate(10deg)}
 }
 
-/* Sparkles */
-.sparkles::before{
-  content:"✨ ✨ ✨ ✨";
+/* Sparkle */
+.sparkle{
   position:fixed;
   width:100%;
-  animation:sparkleMove 6s linear infinite;
+  animation:spark 6s infinite;
 }
-@keyframes sparkleMove{
-  0%{transform:translateY(-50px)}
+@keyframes spark{
   100%{transform:translateY(100vh)}
-}
-
-/* RSVP */
-.rsvp input,.rsvp select{
-  width:90%;
-  padding:8px;
-  margin:5px;
-  border-radius:10px;
-}
-.rsvp button{
-  padding:8px 15px;
-  border-radius:20px;
-  background:#ff4f81;
-  color:white;
 }
 </style>
 </head>
 
 <body>
 
-<div class="sparkles"></div>
+<div class="container" id="container">
+
+<!-- PAGE 1 INTRO -->
+<div class="page">
+<div class="intro">
+🎉 Welcome 🎉<br>
+Baby Jianna Turns ONE 👶💖
+</div>
+</div>
+
+<!-- PAGE 2 MAIN -->
+<div class="page">
 
 <div class="card">
 
-<div class="cross">✝️</div>
 <div class="teddy">🧸</div>
 
-<div class="title">Royal Birthday Celebration</div>
+<div class="name">Jianna 👶💖</div>
 
-<div class="name">👑 Jianna 👑</div>
+<div class="text">
+📅 April 24 | ⏰ 6:30 PM
+</div>
 
-<div class="text">April 24 | 6:30 PM</div>
+<div class="text">
+📍 Ponmeni, Madurai
+</div>
 
-<div class="location-pin">📍</div>
+<button onclick="nextPage()" class="btn">Enter 🎈</button>
 
-<a href="https://share.google/cxDQMwlbSag01pnN2" class="map-btn">View Location</a>
+<div class="text">⏳ <span id="countdown"></span></div>
 
-<div id="countdown" class="countdown"></div>
+<button onclick="cutCake()" class="btn">🎂 Cut Cake</button>
 
-<div class="cake">🎂</div>
-<button onclick="cutCake()" class="cut-btn">Cut Cake</button>
+<div>👀 <span id="visit"></span></div>
 
-<div id="verseBox" class="bible"></div>
+<input id="name" placeholder="Your Name"><br>
+<button onclick="rsvp()" class="btn">RSVP 💌</button>
 
-<div>👀 <span id="visitCount"></span></div>
-
-<div class="rsvp">
-<input id="name" placeholder="Your Name">
-<select id="status">
-<option>Will Attend</option>
-<option>Not Attend</option>
-</select>
-<button onclick="sendRSVP()">Send</button>
 </div>
 
 </div>
 
+</div>
+
+<!-- Hearts -->
 <div class="hearts">
-<span>💖</span><span>💗</span><span>💕</span>
+<span>💖</span><span>💕</span>
 </div>
 
+<!-- Balloons -->
 <div class="balloons">
-<span>🎈</span><span>🎈</span><span>🎈</span>
+<span>🎈</span><span>🎈</span>
 </div>
+
+<!-- Sparkle -->
+<div class="sparkle">✨✨✨✨</div>
+
+<audio id="sound">
+<source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
+</audio>
 
 <script>
-// countdown
+// Swipe
+function nextPage(){
+ document.getElementById("container").style.transform="translateX(-100%)";
+ document.getElementById("sound").play();
+}
+
+// Countdown
 const d=new Date("April 24, 2026 18:30:00").getTime();
 setInterval(()=>{
  let t=d-new Date().getTime();
@@ -214,38 +182,28 @@ setInterval(()=>{
  Math.floor(t%86400000/3600000)+"h";
 },1000);
 
-// cake + confetti
+// Cake confetti
 function cutCake(){
- document.querySelector('.cake').classList.add('cut');
- for(let i=0;i<40;i++){
+ for(let i=0;i<30;i++){
   let c=document.createElement("div");
   c.innerHTML="🎉";
   c.style.position="fixed";
   c.style.left=Math.random()*100+"vw";
-  c.style.top="50%";
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),2000);
  }
+ document.getElementById("sound").play();
 }
 
-// bible
-const v=["Psalm 127:3","Numbers 6:24","Jeremiah 1:5"];
-let i=0;
-setInterval(()=>{
- document.getElementById("verseBox").innerText=v[i];
- i=(i+1)%v.length;
-},3000);
-
-// counter
-let c=localStorage.getItem("c")||0;
-c++; localStorage.setItem("c",c);
-document.getElementById("visitCount").innerText=c;
+// Counter
+let c=localStorage.getItem("v")||0;
+c++; localStorage.setItem("v",c);
+document.getElementById("visit").innerText=c;
 
 // RSVP
-function sendRSVP(){
+function rsvp(){
  let name=document.getElementById("name").value;
- let msg="I am "+name;
- window.open("https://wa.me/91XXXXXXXXXX?text="+msg);
+ window.open("https://wa.me/91XXXXXXXXXX?text=I am "+name);
 }
 </script>
 
