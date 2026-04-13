@@ -34,9 +34,8 @@
             font-style: italic;
         }
         .name { font-size: 3.5rem; color: #d4af37; margin: 10px 0; font-family: 'Times New Roman', serif; font-style: italic; }
-        .age { font-size: 1.2rem; color: #555; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        .age { font-size: 1.2rem; color: #555; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
         
-        /* Countdown Styling */
         #countdown {
             display: flex;
             justify-content: space-around;
@@ -46,8 +45,8 @@
             margin: 20px 0;
             border: 1px solid #f0e6d2;
         }
-        .time-box { text-align: center; }
-        .time-num { display: block; font-size: 1.5rem; font-weight: bold; color: #d4af37; }
+        .time-box { text-align: center; min-width: 60px; }
+        .time-num { display: block; font-size: 1.8rem; font-weight: bold; color: #d4af37; }
         .time-label { font-size: 0.7rem; color: #8b7355; text-transform: uppercase; }
 
         .details-section {
@@ -70,7 +69,9 @@
             font-weight: bold;
             font-size: 0.85rem;
             box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+            transition: 0.3s;
         }
+        .map-button:hover { background-color: #b8860b; }
     </style>
 </head>
 <body>
@@ -89,40 +90,45 @@
         <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
         <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-label">Hours</span></div>
         <div class="time-box"><span class="time-num" id="minutes">00</span><span class="time-label">Mins</span></div>
+        <div class="time-box"><span class="time-num" id="seconds">00</span><span class="time-label">Secs</span></div>
     </div>
 
     <div class="details-section">
         <strong>FRIDAY, APRIL 24 @ 6:30 PM</strong>
         <span class="venue-name">S.S. CONVENTION HALL</span>
-        <small>Back side of Sri Krishna Sweets, Ponmeni, Madurai</small>
+        <small>Back side of Sri Krishna Sweets, Ponmeni, Madurai - 16</small>
     </div>
 
-    <a href="https://share.google/bUPpBY8HVZt4nqpt2" target="_blank" class="map-button">
+    <a href="https://www.google.com/maps/search/?api=1&query=SS+Community+Hall+Subramaniya+Pillai+St+Madurai" target="_blank" class="map-button">
         📍 NAVIGATE TO VENUE
     </a>
 </div>
 
 <script>
-    // Set the target date: April 24, 2026 18:30:00
-    const targetDate = new Date("April 24, 2026 18:30:00").getTime();
+    const partyTime = new Date("April 24, 2026 18:30:00").getTime();
 
-    const timer = setInterval(function() {
+    function updateCountdown() {
         const now = new Date().getTime();
-        const distance = targetDate - now;
+        const gap = partyTime - now;
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+        const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((gap % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+        document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+        document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+        document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
 
-        if (distance < 0) {
-            clearInterval(timer);
-            document.getElementById("countdown").innerHTML = "<div style='color:#d4af37; font-weight:bold;'>THE CELEBRATION HAS BEGUN!</div>";
+        if (gap <= 0) {
+            clearInterval(timerInterval);
+            document.getElementById("countdown").innerHTML = "<div style='color:#d4af37; font-weight:bold;'>THE PARTY HAS STARTED!</div>";
         }
-    }, 1000);
+    }
+
+    updateCountdown();
+    const timerInterval = setInterval(updateCountdown, 1000);
 </script>
 
 </body>
