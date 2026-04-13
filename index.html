@@ -15,11 +15,11 @@ body{
   background:linear-gradient(135deg,#fff0f5,#e0f7fa,#fff9c4);
 }
 
-/* Swipe pages */
+/* Swipe container */
 .container{
   display:flex;
   width:200%;
-  transition:0.5s;
+  transition:0.6s;
 }
 .page{
   width:100%;
@@ -34,24 +34,20 @@ body{
 .intro{
   font-size:30px;
   text-align:center;
-  animation:fadeIn 2s;
+  animation:fade 2s;
 }
-
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
-}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* Card */
 .card{
   background:white;
-  border-radius:25px;
   padding:20px;
+  border-radius:25px;
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* Cute elements */
+/* Text */
 .name{font-size:28px;color:#ff69b4;}
 .text{font-size:14px;margin:8px;}
 .btn{
@@ -60,6 +56,26 @@ body{
   padding:10px;
   border:none;
   border-radius:20px;
+  margin:5px;
+}
+
+/* Cake */
+.cake-box{
+  position:relative;
+  font-size:60px;
+}
+.cake-slice{
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  transform:translateX(0);
+  transition:1s;
+}
+.cake-box.cut .cake-full{opacity:0.3;}
+.cake-box.cut .cake-slice{
+  opacity:1;
+  transform:translateX(60px);
 }
 
 /* Hearts */
@@ -68,9 +84,7 @@ body{
   bottom:0;
   animation:float 8s infinite;
 }
-@keyframes float{
-  100%{transform:translateY(-100vh)}
-}
+@keyframes float{100%{transform:translateY(-100vh)}}
 
 /* Balloons */
 .balloons span{
@@ -78,18 +92,15 @@ body{
   bottom:-50px;
   animation:balloon 10s infinite;
 }
-@keyframes balloon{
-  100%{transform:translateY(-120vh)}
-}
+@keyframes balloon{100%{transform:translateY(-120vh)}}
 
-/* Teddy */
-.teddy{
-  font-size:40px;
-  animation:shake 2s infinite;
+/* Toys */
+.toys span{
+  position:fixed;
+  bottom:-50px;
+  animation:toy 12s infinite;
 }
-@keyframes shake{
-  50%{transform:rotate(10deg)}
-}
+@keyframes toy{100%{transform:translateY(-120vh)}}
 
 /* Sparkle */
 .sparkle{
@@ -97,9 +108,7 @@ body{
   width:100%;
   animation:spark 6s infinite;
 }
-@keyframes spark{
-  100%{transform:translateY(100vh)}
-}
+@keyframes spark{100%{transform:translateY(100vh)}}
 </style>
 </head>
 
@@ -107,20 +116,20 @@ body{
 
 <div class="container" id="container">
 
-<!-- PAGE 1 INTRO -->
+<!-- PAGE 1 -->
 <div class="page">
 <div class="intro">
 🎉 Welcome 🎉<br>
 Baby Jianna Turns ONE 👶💖
 </div>
+<button onclick="nextPage()" class="btn">Enter 🎈</button>
 </div>
 
-<!-- PAGE 2 MAIN -->
+<!-- PAGE 2 -->
 <div class="page">
-
 <div class="card">
 
-<div class="teddy">🧸</div>
+<div style="font-size:40px;">🧸</div>
 
 <div class="name">Jianna 👶💖</div>
 
@@ -132,45 +141,41 @@ Baby Jianna Turns ONE 👶💖
 📍 Ponmeni, Madurai
 </div>
 
-<button onclick="nextPage()" class="btn">Enter 🎈</button>
-
 <div class="text">⏳ <span id="countdown"></span></div>
+
+<!-- Cake -->
+<div class="cake-box">
+  <div class="cake-full">🎂</div>
+  <div class="cake-slice">🍰</div>
+</div>
 
 <button onclick="cutCake()" class="btn">🎂 Cut Cake</button>
 
-<div>👀 <span id="visit"></span></div>
+<div>👀 Visitors: <span id="visit"></span></div>
 
 <input id="name" placeholder="Your Name"><br>
-<button onclick="rsvp()" class="btn">RSVP 💌</button>
+<button onclick="rsvp()" class="btn">💌 RSVP</button>
 
+</div>
 </div>
 
 </div>
 
-</div>
-
-<!-- Hearts -->
-<div class="hearts">
-<span>💖</span><span>💕</span>
-</div>
-
-<!-- Balloons -->
-<div class="balloons">
-<span>🎈</span><span>🎈</span>
-</div>
-
-<!-- Sparkle -->
+<!-- Effects -->
+<div class="hearts"><span>💖</span><span>💕</span></div>
+<div class="balloons"><span>🎈</span><span>🎈</span></div>
+<div class="toys"><span>🍼</span><span>🧸</span><span>🪀</span></div>
 <div class="sparkle">✨✨✨✨</div>
 
-<audio id="sound">
-<source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
+<!-- Sound -->
+<audio id="babySound">
+<source src="https://www.soundjay.com/human/sounds/baby-laugh-01.mp3">
 </audio>
 
 <script>
 // Swipe
 function nextPage(){
  document.getElementById("container").style.transform="translateX(-100%)";
- document.getElementById("sound").play();
 }
 
 // Countdown
@@ -182,18 +187,22 @@ setInterval(()=>{
  Math.floor(t%86400000/3600000)+"h";
 },1000);
 
-// Cake confetti
+// Cake + sound + confetti
 function cutCake(){
+ document.querySelector('.cake-box').classList.add('cut');
+ document.getElementById("babySound").play();
+
  for(let i=0;i<30;i++){
   let c=document.createElement("div");
   c.innerHTML="🎉";
   c.style.position="fixed";
   c.style.left=Math.random()*100+"vw";
+  c.style.top="50%";
   document.body.appendChild(c);
   setTimeout(()=>c.remove(),2000);
  }
- document.getElementById("sound").play();
 }
+
 // Counter
 let c=localStorage.getItem("v")||0;
 c++; localStorage.setItem("v",c);
@@ -202,7 +211,8 @@ document.getElementById("visit").innerText=c;
 // RSVP
 function rsvp(){
  let name=document.getElementById("name").value;
- window.open("https://wa.me/91XXXXXXXXXX?text=I am "+name);
+ if(!name){alert("Enter name"); return;}
+ window.open("https://wa.me/91XXXXXXXXXX?text=I am "+name+" joining Jianna birthday 🎉");
 }
 </script>
 
