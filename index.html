@@ -163,13 +163,6 @@ target="_blank" class="map-btn">📍 View Location</a>
 
 <!-- Bible -->
 <div id="verseBox" class="bible"></div>
-
-<!-- Music -->
-<button onclick="playMusic()" class="music-btn">🎵 Play Music</button>
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
 </div>
 
 <script>
@@ -188,10 +181,6 @@ function cutCake(){
  document.querySelector('.cake').classList.add('cut');
  alert("🎉 Happy Birthday Jianna 🎂👑");
 }
-
-// Music
-function playMusic(){
- document.getElementById("bgMusic").play();
 }
 
 // Bible rotation
