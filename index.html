@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jianna's 1st Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd1dc, #ffe4ec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 25px;
+  padding: 30px 20px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  border: 4px solid #f7c6d9;
+  position: relative;
+}
+
+/* Crown */
+.crown {
+  font-size: 42px;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Title */
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: #d4af37;
+  margin-top: 10px;
+}
+
+/* Name */
+.name {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ff4f81;
+  margin: 10px 0;
+}
+
+/* Age */
+.age {
+  font-size: 18px;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Text */
+.text {
+  font-size: 15px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Highlight */
+.highlight {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Footer */
+.footer {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Responsive */
+@media(max-width:480px){
+  .title { font-size: 22px; }
+  .name { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="crown">👑</div>
+
+  <div class="title">Royal Birthday Celebration</div>
+
+  <div class="name">Jianna</div>
+  <div class="age">Turns ONE 🎉</div>
+
+  <div class="text">
+    With love and joy, we invite you to celebrate our little princess's 1st birthday!
+  </div>
+
+  <div class="text">
+    📅 <span class="highlight">Date:</span> April 24, Friday
+  </div>
+
+  <div class="text">
+    ⏰ <span class="highlight">Time:</span> 6:30 PM
+  </div>
+
+  <div class="text">
+    📍 <span class="highlight">Venue:</span><br>
+    S.S Convention Hall,<br>
+    Sri Krishna Sweets Back Side,<br>
+    Ponmeni, Madurai - 16
+  </div>
+
+  <div class="footer">
+    Join us for a magical royal evening ✨🎀
+  </div>
+</div>
+
+</body>
+</html>
