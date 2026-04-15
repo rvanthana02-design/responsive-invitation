@@ -6,38 +6,43 @@
     <title>Jianna's 1st Birthday</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&family=Noto+Sans+Tamil:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #e0e5ec;
-            --gold: #d4af37;
-            --shadow-light: rgba(255, 255, 255, 0.8);
-            --shadow-dark: rgba(163, 177, 198, 0.8);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--bg);
+            /* Modern Mesh Gradient Background */
+            background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 0% 100%, hsla(339,49%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 100%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 100%, hsla(253,16%,7%,1) 0, transparent 50%);
+            background-color: #1a1a2e;
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
             padding: 20px;
         }
 
+        /* Glassmorphism Card */
         .card {
-            background: var(--bg);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             width: 100%;
             max-width: 420px;
             padding: 50px 30px;
-            border-radius: 50px;
-            box-shadow: 20px 20px 60px var(--shadow-dark), -20px -20px 60px var(--shadow-light);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
             text-align: center;
-            position: relative;
+            color: white;
         }
 
         .bible-verse {
             font-family: 'Noto Sans Tamil', sans-serif;
-            color: #5c6b7f;
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
             line-height: 1.7;
             margin-bottom: 25px;
@@ -46,11 +51,20 @@
         .name {
             font-family: 'Great Vibes', cursive;
             font-size: 4.5rem;
-            color: var(--gold);
+            color: #d4af37; /* Gold */
             margin: 5px 0;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
-        /* Countdown Grid */
+        .turning-one {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        /* Modern Countdown Style */
         #countdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -59,17 +73,18 @@
         }
 
         .time-box {
+            background: rgba(255, 255, 255, 0.1);
             padding: 15px 5px;
-            border-radius: 20px;
-            box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .time-num { display: block; font-size: 1.5rem; font-weight: 700; color: #444; }
-        .time-label { font-size: 0.6rem; color: #7f8c9f; text-transform: uppercase; font-weight: 600; }
+        .time-num { display: block; font-size: 1.5rem; font-weight: 700; color: #d4af37; }
+        .time-label { font-size: 0.6rem; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; }
 
         .details {
-            border-top: 2px dashed rgba(212, 175, 55, 0.2);
-            border-bottom: 2px dashed rgba(212, 175, 55, 0.2);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
             padding: 25px 0;
             margin: 25px 0;
             line-height: 1.6;
@@ -81,7 +96,7 @@
             font-size: 1.15rem;
             display: block;
             margin-top: 5px;
-            color: #222;
+            color: #d4af37;
         }
 
         .btn-map {
@@ -91,13 +106,16 @@
             font-weight: 700;
             font-size: 0.9rem;
             display: block;
-            color: white;
-            background: linear-gradient(135deg, var(--gold), #b8860b);
-            box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+            color: #1a1a2e;
+            background: #d4af37;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: 0.3s ease;
         }
 
-        .btn-map:active { transform: scale(0.97); }
+        .btn-map:hover {
+            background: #f1c40f;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -111,7 +129,7 @@
         </div>
 
         <div class="name">Jianna</div>
-        <p style="font-family: 'Cinzel'; letter-spacing: 4px; font-size: 0.85rem; color: #555;">IS TURNING ONE</p>
+        <p class="turning-one">IS TURNING ONE</p>
 
         <div id="countdown">
             <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
@@ -121,9 +139,9 @@
         </div>
 
         <div class="details">
-            <p style="color: #b8860b; font-weight: 700;">FRIDAY, APRIL 24 @ 6:30 PM</p>
+            <p style="color: rgba(255,255,255,0.9); font-weight: 700;">FRIDAY, APRIL 24 @ 6:30 PM</p>
             <span class="venue">S.S. CONVENTION HALL</span>
-            <p style="font-size: 0.85rem; color: #5c6b7f; margin-top: 5px;">
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 5px;">
                 Back Side of Sri Krishna Sweets,<br>
                 Ponmeni, Madurai - 625016
             </p>
@@ -134,12 +152,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // Confetti on Page Load
         window.onload = () => {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#d4af37', '#ffffff'] });
         };
 
-        // Live Countdown Logic (Fixed)
         const targetDate = new Date("April 24, 2026 18:30:00").getTime();
 
         function updateCountdown() {
@@ -151,14 +167,13 @@
             const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((gap % (1000 * 60)) / 1000);
 
-            // Display in 00 format
             document.getElementById("days").innerText = d < 10 ? "0" + d : d;
             document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
             document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
             document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
 
             if (gap < 0) {
-                document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; color:var(--gold); font-weight:700;'>THE CELEBRATION HAS BEGUN!</div>";
+                document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; color:#d4af37; font-weight:700;'>HAPPY BIRTHDAY JIANNA!</div>";
             }
         }
         
