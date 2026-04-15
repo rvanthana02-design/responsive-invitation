@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jianna's 1st Birthday | Neumorphic</title>
+    <title>Jianna's 1st Birthday</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&family=Noto+Sans+Tamil:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -24,27 +24,11 @@
             padding: 20px;
         }
 
-        /* Modern Visitor Counter Badge */
-        .visitor-badge {
-            position: absolute;
-            top: 25px;
-            background: var(--bg);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #7f8c9f;
-            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .card {
             background: var(--bg);
             width: 100%;
             max-width: 420px;
-            padding: 60px 30px 40px;
+            padding: 50px 30px;
             border-radius: 50px;
             box-shadow: 20px 20px 60px var(--shadow-dark), -20px -20px 60px var(--shadow-light);
             text-align: center;
@@ -63,23 +47,15 @@
             font-family: 'Great Vibes', cursive;
             font-size: 4.5rem;
             color: var(--gold);
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
-        .turning-one {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            font-size: 0.9rem;
-            color: #444;
-            margin-bottom: 30px;
-        }
-
-        /* Neumorphic Countdown */
+        /* Countdown Grid */
         #countdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
         .time-box {
@@ -88,17 +64,25 @@
             box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
         }
 
-        .time-num { display: block; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
-        .time-label { font-size: 0.6rem; color: #7f8c9f; text-transform: uppercase; }
+        .time-num { display: block; font-size: 1.5rem; font-weight: 700; color: #444; }
+        .time-label { font-size: 0.6rem; color: #7f8c9f; text-transform: uppercase; font-weight: 600; }
 
         .details {
             border-top: 2px dashed rgba(212, 175, 55, 0.2);
             border-bottom: 2px dashed rgba(212, 175, 55, 0.2);
-            padding: 20px 0;
+            padding: 25px 0;
             margin: 25px 0;
+            line-height: 1.6;
         }
 
-        .venue { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.1rem; color: #222; margin-top: 5px; display: block;}
+        .venue {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: block;
+            margin-top: 5px;
+            color: #222;
+        }
 
         .btn-map {
             padding: 18px;
@@ -110,10 +94,10 @@
             color: white;
             background: linear-gradient(135deg, var(--gold), #b8860b);
             box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
-        .btn-map:active { transform: scale(0.98); }
+        .btn-map:active { transform: scale(0.97); }
     </style>
 </head>
 <body>
@@ -127,7 +111,7 @@
         </div>
 
         <div class="name">Jianna</div>
-        <div class="turning-one">is turning one</div>
+        <p style="font-family: 'Cinzel'; letter-spacing: 4px; font-size: 0.85rem; color: #555;">IS TURNING ONE</p>
 
         <div id="countdown">
             <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
@@ -138,44 +122,48 @@
 
         <div class="details">
             <p style="color: #b8860b; font-weight: 700;">FRIDAY, APRIL 24 @ 6:30 PM</p>
-            <span class="venue">S.S. CONVENTION HALL<br>Back Side of Sri Krishna Sweets, </span>
-            <p style="font-size: 0.8rem; opacity: 0.8;">Ponmeni, Madurai - 625016</p>
+            <span class="venue">S.S. CONVENTION HALL</span>
+            <p style="font-size: 0.85rem; color: #5c6b7f; margin-top: 5px;">
+                Back Side of Sri Krishna Sweets,<br>
+                Ponmeni, Madurai - 625016
+            </p>
         </div>
 
-        <a href="https://share.google/HeT5wEqpSGrinQdda" target="_blank" class="btn-map">📍 NAVIGATE TO VENUE</a>
+        <a href="https://share.google/HeT5wEqpSGrinQdda" target="_blank" class="btn-map">📍 VIEW ON GOOGLE MAPS</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // 1. Fixed Visitor Counter Logic
-        function runCounter() {
-            let currentViews = localStorage.getItem('invitation_views');
-            if (!currentViews) {
-                currentViews = 142; // Starting number
-            }
-            currentViews = parseInt(currentViews) + 1;
-            localStorage.setItem('invitation_views', currentViews);
-            document.getElementById('viewCount').innerText = currentViews;
-        }
-        runCounter();
-
-        // 2. Confetti Effect
+        // Confetti on Page Load
         window.onload = () => {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#d4af37', '#ffffff'] });
         };
 
-        // 3. Countdown Logic
-        const target = new Date("April 24, 2026 18:30:00").getTime();
-        function update() {
+        // Live Countdown Logic (Fixed)
+        const targetDate = new Date("April 24, 2026 18:30:00").getTime();
+
+        function updateCountdown() {
             const now = new Date().getTime();
-            const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            const gap = targetDate - now;
+
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            // Display in 00 format
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+
+            if (gap < 0) {
+                document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; color:var(--gold); font-weight:700;'>THE CELEBRATION HAS BEGUN!</div>";
+            }
         }
-        setInterval(update, 1000);
-        update();
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 </body>
 </html>
